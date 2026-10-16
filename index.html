@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio · Senior Backend Developer</title>
+  <meta name="description" content="Portfolio & CV của Senior Backend Developer" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><text x='16' y='21' font-family='monospace' font-size='14' font-weight='700' fill='white' text-anchor='middle'>&lt;/&gt;</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap&subset=vietnamese" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    // Apply the saved theme early to avoid a flash on load.
+    try {
+      const t = localStorage.getItem("theme");
+      if (t) document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <header class="topbar" id="top">
+    <div class="container topbar-inner">
+      <a href="#top" class="brand" aria-label="Home">
+        <span class="brand-mark" data-bind="initials"></span>
+        <span class="brand-name" data-bind="name"></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="#about" data-i18n="nav.about"></a>
+        <a href="#skills" data-i18n="nav.skills"></a>
+        <a href="#experience" data-i18n="nav.experience"></a>
+        <a href="#projects" data-i18n="nav.projects"></a>
+        <a href="#education" data-i18n="nav.education"></a>
+        <a href="#contact" data-i18n="nav.contact"></a>
+      </nav>
+
+      <div class="actions">
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" data-lang="vi" aria-pressed="true">VI</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button type="button" class="icon-btn" id="themeToggle" data-i18n-title="toggleTheme" data-i18n-aria="toggleTheme">
+          <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button type="button" class="btn btn-primary btn-sm hide-sm" data-download="current">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+          <span data-i18n="downloadCv"></span>
+        </button>
+        <button type="button" class="icon-btn menu-btn" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="nav">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <span class="badge"><span class="pulse"></span><span data-bind="availability"></span></span>
+          <h1 data-bind="name"></h1>
+          <p class="hero-title" data-bind="title"></p>
+          <p class="hero-summary" data-bind="summary"></p>
+          <div class="hero-cta">
+            <button type="button" class="btn btn-primary" data-download="current">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+              <span data-i18n="downloadCv"></span> (.docx)
+            </button>
+            <a href="#contact" class="btn btn-ghost" data-i18n="contactMe"></a>
+          </div>
+          <ul class="hero-meta" id="heroMeta"></ul>
+        </div>
+
+        <div class="terminal" aria-hidden="true">
+          <div class="terminal-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="terminal-title">developer.json</span>
+          </div>
+          <pre class="terminal-body" id="terminal"></pre>
+        </div>
+      </div>
+
+      <div class="container">
+        <ul class="stats" id="stats"></ul>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-index">01</span>
+          <h2 data-i18n="sections.about"></h2>
+        </header>
+        <div class="about-grid">
+          <div class="about-text" id="aboutText"></div>
+          <dl class="facts" id="facts"></dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section alt" id="skills">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-index">02</span>
+          <h2 data-i18n="sections.skills"></h2>
+          <p class="lead" data-i18n="sectionLead.skills"></p>
+        </header>
+        <div class="skills-grid" id="skillsGrid"></div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-index">03</span>
+          <h2 data-i18n="sections.experience"></h2>
+          <p class="lead" data-i18n="sectionLead.experience"></p>
+        </header>
+        <ol class="timeline" id="timeline"></ol>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section alt" id="projects">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-index">04</span>
+          <h2 data-i18n="sections.projects"></h2>
+          <p class="lead" data-i18n="sectionLead.projects"></p>
+        </header>
+        <div class="projects-grid" id="projectsGrid"></div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section" id="education">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-index">05</span>
+          <h2 data-i18n="sections.education"></h2>
+        </header>
+        <div class="edu-grid">
+          <div class="card">
+            <h3 class="card-title" data-i18n="sections.education"></h3>
+            <ul class="plain-list" id="educationList"></ul>
+          </div>
+          <div class="card">
+            <h3 class="card-title" data-i18n="sections.certifications"></h3>
+            <ul class="plain-list" id="certList"></ul>
+          </div>
+          <div class="card">
+            <h3 class="card-title" data-i18n="sections.languages"></h3>
+            <ul class="plain-list" id="langList"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section class="section alt" id="download">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-index">06</span>
+          <h2 data-i18n="sections.download"></h2>
+          <p class="lead" data-i18n="sectionLead.download"></p>
+        </header>
+        <div class="download-grid">
+          <button type="button" class="download-card" data-download="vi">
+            <span class="file-icon">DOCX</span>
+            <span class="download-text">
+              <strong data-i18n="downloadVi"></strong>
+              <small data-i18n="downloadHint"></small>
+            </span>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+          </button>
+          <button type="button" class="download-card" data-download="en">
+            <span class="file-icon">DOCX</span>
+            <span class="download-text">
+              <strong data-i18n="downloadEn"></strong>
+              <small data-i18n="downloadHint"></small>
+            </span>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-index">07</span>
+          <h2 data-i18n="sections.contact"></h2>
+          <p class="lead" data-i18n="sectionLead.contact"></p>
+        </header>
+        <div class="contact-grid" id="contactGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> <span data-bind="name"></span></span>
+      <span class="mono"><span data-i18n="footer"></span> <span data-bind="name"></span></span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/cv-docx.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
